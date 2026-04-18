@@ -15,17 +15,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(
-                to bottom,
-                #FFD700 0%,      /* 黄色 */
-                #FFD700 25%,
-                #FFFFFF 25%,     /* 白色 */
-                #FFFFFF 50%,
-                #9C4DC4 50%,     /* 紫色 */
-                #9C4DC4 75%,
-                #000000 75%,     /* 黑色 */
-                #000000 100%
-            );
+            background: #E8E8F0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             display: flex;
             flex-direction: column;
@@ -38,8 +28,6 @@
             position: relative;
             width: 100%;
             height: 100%;
-            overflow-y: auto;
-            z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -48,18 +36,41 @@
 
         .header {
             text-align: center;
-            color: rgba(255, 255, 255, 0.9);
+            color: #666;
             margin-bottom: 30px;
             font-size: 1.2rem;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.95);
+            position: relative;
+            background: white;
             border-radius: 30px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
             max-width: 400px;
             width: 90%;
+        }
+
+        /* 旗子背景部分 */
+        .flag-background {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(
+                to bottom,
+                #FFD700 0%,      /* 黄色 */
+                #FFD700 25%,
+                #FFFFFF 25%,     /* 白色 */
+                #FFFFFF 50%,
+                #9C4DC4 50%,     /* 紫色 */
+                #9C4DC4 75%,
+                #000000 75%,     /* 黑色 */
+                #000000 100%
+            );
+        }
+
+        /* 信息内容部分 */
+        .profile-info-section {
+            padding: 30px;
         }
 
         .profile-name {
@@ -70,7 +81,7 @@
             text-align: center;
         }
 
-        .profile-info {
+        .profile-meta {
             background: #E8E8F0;
             border-radius: 15px;
             padding: 8px 16px;
@@ -112,8 +123,12 @@
                 font-size: 2rem;
             }
 
-            .profile-card {
-                padding: 30px 20px;
+            .profile-info-section {
+                padding: 25px;
+            }
+
+            .flag-background {
+                height: 120px;
             }
         }
     </style>
@@ -126,20 +141,26 @@
         </div>
 
         <div class="profile-card">
-            <div class="profile-name">汐沫</div>
-            <div class="profile-info">16岁 · mtx.</div>
+            <!-- 旗子背景 -->
+            <div class="flag-background"></div>
 
-            <div class="info-item">
-                <div class="info-label">QQ 号码</div>
-                <div class="info-value">2132248873</div>
+            <!-- 信息内容 -->
+            <div class="profile-info-section">
+                <div class="profile-name">汐沫</div>
+                <div class="profile-meta">16岁 · mtx.</div>
+
+                <div class="info-item">
+                    <div class="info-label">QQ 号码</div>
+                    <div class="info-value">2132248873</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">电话号码</div>
+                    <div class="info-value">19217264755</div>
+                </div>
+
+                <div class="footer-text">很高兴认识你</div>
             </div>
-
-            <div class="info-item">
-                <div class="info-label">电话号码</div>
-                <div class="info-value">19217264755</div>
-            </div>
-
-            <div class="footer-text">很高兴认识你</div>
         </div>
     </div>
 </body>
