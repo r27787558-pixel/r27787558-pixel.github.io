@@ -3,123 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>山竹的个人主页</title>
+    <title>汐沫的个人主页</title>
     <style>
-        /* 整体背景 */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        /* 个人卡片 */
-        .card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            width: 85%;
-            max-width: 400px;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
+        body {
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
+            background: #E8E8F0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 网名 */
-        h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #2c3e50;
+        /* 原页面内容 */
+        .page-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 1;
         }
 
-        .tag {
-            display: inline-block;
-            background: #e1e8f0;
-            padding: 4px 12px;
+        .header {
+            background: linear-gradient(135deg, #E8E8F0 0%, #D0D0E0 100%);
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 30px;
+            margin: 30px 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .profile-info {
+            background: #E8E8F0;
             border-radius: 15px;
-            font-size: 14px;
-            margin-top: 10px;
-            color: #5d6d7e;
-        }
-
-        /* 详细信息 */
-        .info-list {
-            margin: 25px 0;
-            text-align: left;
+            padding: 8px 16px;
+            display: inline-block;
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
         }
 
         .info-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 10px;
+            margin-bottom: 25px;
         }
 
-        .label {
-            font-weight: bold;
-            color: #7f8c8d;
-            font-size: 13px;
-            display: block;
+        .info-label {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
         }
 
-        .value {
-            font-size: 16px;
-            color: #2c3e50;
-            word-break: break-all;
+        .info-value {
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        /* 非二元旗装饰条 */
-        .nb-flag {
-            position: absolute;
-            bottom: 0;
+        .footer-text {
+            text-align: center;
+            color: #BBB;
+            font-size: 0.95rem;
+            margin: 30px 0;
+        }
+
+        /* 非二元旗覆盖层 */
+        .flag-overlay {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 12px;
-            display: flex;
-            flex-direction: column;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                #FFD700 0%,      /* 黄色 */
+                #FFD700 25%,
+                #FFFFFF 25%,     /* 白色 */
+                #FFFFFF 50%,
+                #9C4DC4 50%,     /* 紫色 */
+                #9C4DC4 75%,
+                #000000 75%,     /* 黑色 */
+                #000000 100%
+            );
+            z-index: 9999;
+            pointer-events: none;
         }
 
-        .flag-stripe { height: 25%; width: 100%; }
-        .yellow { background-color: #FFF433; } /* 黄 */
-        .white  { background-color: #FFFFFF; } /* 白 */
-        .purple { background-color: #9B59B6; } /* 紫 */
-        .black  { background-color: #2C2C2C; } /* 黑 */
+        .flag-overlay.hidden {
+            display: none;
+        }
 
+        /* 显示/隐藏按钮 */
+        .toggle-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #9C4DC4);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            transform: scale(1.1);
+        }
+
+        .toggle-button:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 480px) {
+            .profile-name {
+                font-size: 2rem;
+            }
+
+            .profile-card {
+                margin: 20px 15px;
+                padding: 30px 20px;
+            }
+
+            .toggle-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 非二元旗覆盖层 -->
+    <div class="flag-overlay" id="flagOverlay"></div>
 
-    <div class="card">
-        <h1>汐沫</h1>
-        <div class="tag">16岁 · mtx.</div>
-
-        <div class="info-list">
-            <div class="info-item">
-                <span class="label">QQ 号码</span>
-                <span class="value">2132248873</span>
-            </div>
-            <div class="info-item">
-                <span class="label">电话号码</span>
-                <span class="value">19217264755</span>
-            </div>
+    <!-- 页面内容 -->
+    <div class="page-content">
+        <div class="header">
+            ⚡ 汐沫的个人主页
         </div>
 
-        <p style="font-size: 14px; color: #95a5a6;">很高兴认识你</p>
+        <div class="profile-card">
+            <div class="profile-name">汐沫</div>
+            <div class="profile-info">16岁 · mtx.</div>
 
-        <div class="nb-flag">
-            <div class="flag-stripe yellow"></div>
-            <div class="flag-stripe white"></div>
-            <div class="flag-stripe purple"></div>
-            <div class="flag-stripe black"></div>
+            <div class="info-item">
+                <div class="info-label">QQ 号码</div>
+                <div class="info-value">2132248873</div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-label">电话号码</div>
+                <div class="info-value">19217264755</div>
+            </div>
+
+            <div class="footer-text">很高兴认识你</div>
         </div>
     </div>
 
+    <!-- 显示/隐藏旗子按钮 -->
+    <button class="toggle-button" id="toggleBtn" onclick="toggleFlag()">🚩</button>
+
+    <script>
+        function toggleFlag() {
+            const flagOverlay = document.getElementById('flagOverlay');
+            flagOverlay.classList.toggle('hidden');
+        }
+    </script>
 </body>
-</html>
+            </html>
