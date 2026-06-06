@@ -51,13 +51,18 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
+        /* 卡片：换成了淡蓝到淡粉的半透明渐变 */
         .card {
-            background: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(
+                135deg, 
+                rgba(174, 223, 242, 0.85) 0%, /* 淡蓝 */
+                rgba(247, 198, 207, 0.85) 100% /* 淡粉 */
+            );
             backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         .profile-name {
@@ -69,7 +74,7 @@
 
         .profile-meta {
             font-size: 14px;
-            color: #666;
+            color: #555;
             margin-bottom: 20px;
         }
 
@@ -78,7 +83,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .info-item:last-of-type {
@@ -86,40 +91,45 @@
         }
 
         .info-label {
-            color: #666;
+            color: #444;
             font-size: 14px;
         }
 
         .info-value {
-            color: #333;
+            color: #111;
             font-weight: 500;
             font-size: 15px;
         }
 
-        /* 导航菜单样式 */
         .nav-menu {
             display: flex;
             gap: 15px;
             margin-top: 10px;
         }
 
+        /* 按钮：同步换成淡蓝到淡粉渐变 */
         .nav-btn {
             flex: 1;
             text-align: center;
             text-decoration: none;
             padding: 14px;
-            background: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(
+                135deg, 
+                rgba(174, 223, 242, 0.85) 0%, 
+                rgba(247, 198, 207, 0.85) 100%
+            );
             backdrop-filter: blur(10px);
-            color: #333;
+            color: #22px;
             font-weight: bold;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.2s, filter 0.2s;
         }
 
         .nav-btn:hover {
             transform: translateY(-2px);
-            background: #ffffff;
+            filter: brightness(1.05); /* 鼠标悬停时稍微变亮 */
         }
 
         .footer-text {
@@ -127,6 +137,7 @@
             margin-top: 10px;
             font-size: 14px;
             color: #666;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
     </style>
 </head>
